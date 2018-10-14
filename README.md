@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/oyeharry/app-menu.svg?branch=master)](https://travis-ci.org/oyeharry/app-menu)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/oyeharry/app-menu)
+[![Build Status](https://travis-ci.org/savsgio/app-menu.svg?branch=master)](https://travis-ci.org/savsgio/app-menu)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/savsgio/app-menu)
 
 # <app-menu\>
 A simple side menu for App

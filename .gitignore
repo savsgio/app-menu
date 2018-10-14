@@ -1,4 +1,9 @@
-bower_components*
-bower-*.json
-.DS_Store
-debug.log
+.vscode/
+
+build/
+node_modules/
+yarn.lock
+package-lock.json
+
+**/*.log
+**/*.lock

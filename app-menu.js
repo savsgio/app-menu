@@ -1,9 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-menu-behavior/iron-menu-behavior.html">
-<link rel="import" href="../paper-styles/default-theme.html">
-
-<link rel="import" href="app-menu-shared-styles.html">
-<!--
+/**
 Material design: [Menus](https://www.google.com/design/spec/components/menus.html)
 
 `<app-menu>` implements an accessible menu control with Material Design styling. The focused item
@@ -43,38 +38,59 @@ Custom property | Description | Default
 @group App Elements
 @element app-menu
 @demo demo/index.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import {
+  PolymerElement,
+  html,
+} from '@polymer/polymer/polymer-element';
+import {
+  IronMenuBehavior
+} from '@polymer/iron-menu-behavior/iron-menu-behavior';
+import {
+  mixinBehaviors
+} from '@polymer/polymer/lib/legacy/class.js';
 
-<dom-module id="app-menu">
-  <template>
-    <style include="app-menu-shared-styles"></style>
-    <style>
-    :host {
-      display: block;
-      padding: 8px 0;
-      background: var(--app-menu-background-color, var(--primary-background-color));
-      color: var(--app-menu-color, var(--primary-text-color));
-      @apply(--app-menu);
-    }
-    </style>
+import '@polymer/paper-styles/default-theme';
+import './app-menu-shared-styles';
 
-    <div class="selectable-content">
-      <slot></slot>
-    </div>
-  </template>
 
-  <script>
-  Polymer({
-    is: 'app-menu',
+class AppMenu extends mixinBehaviors(IronMenuBehavior, PolymerElement) {
+  static get template() {
+    return html `
+<style include="app-menu-shared-styles"></style>
+<style>
+:host {
+  display: block;
+  padding: 8px 0;
+  background: var(--app-menu-background-color, var(--primary-background-color));
+  color: var(--app-menu-color, var(--primary-text-color));
+  @apply(--app-menu);
+}
+</style>
 
-    behaviors: [
-      Polymer.IronMenuBehavior
-    ],
+<div class="selectable-content">
+  <slot></slot>
+</div>
+`;
+  }
 
-    hostAttributes: {
-      role: 'menu'
-    }
+  static get is() {
+    return 'app-menu';
+  }
 
-  });
-  </script>
-</dom-module>
+  static get properties() {
+    return {
+      role: {
+        type: String,
+        value: "menu"
+      }
+    };
+  }
+}
+
+window.customElements.define(AppMenu.is, AppMenu);
