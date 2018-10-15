@@ -3,6 +3,9 @@ import {
   html,
 } from '@polymer/polymer/polymer-element';
 import {
+  dom
+} from '@polymer/polymer/lib/legacy/polymer.dom';
+import {
   IronControlState
 } from '@polymer/iron-behaviors/iron-control-state';
 import {
@@ -128,19 +131,19 @@ class AppSubmenu extends mixinBehaviors([IronControlState, IronA11yKeysBehavior]
   }
 
   get __parent() {
-    return this.parentNode;
+    return dom(this).parentNode;
   }
 
   get __childNodes() {
-    return this.__parent.childNodes;
+    return dom(this.__parent).childNodes;
   }
 
   get __trigger() {
-    return this.$.trigger.getDistributedNodes()[0];
+    return dom(this.$.trigger).getDistributedNodes()[0];
   }
 
   get __content() {
-    return this.$.content.getDistributedNodes()[0];
+    return dom(this.$.content).getDistributedNodes()[0];
   }
 
   attached() {
@@ -251,12 +254,10 @@ class AppSubmenu extends mixinBehaviors([IronControlState, IronA11yKeysBehavior]
    * @param {CustomEvent} event An `iron-activate` event.
    */
   _onParentIronActivate(event) {
-    var parent = this.__parent;
-
     var submenuList = dom(event).localTarget;
     var localTarget = dom(submenuList).parentNode;
 
-    if (localTarget === parent || localTarget !== this) {
+    if (localTarget === this.__parent || localTarget !== this) {
       if (!this.noAutoCloseOnDeactivate && !this.noAutoClose) {
         this.close();
       }
